@@ -7,7 +7,17 @@
     <script src="./js/main.js"></script>
 </head>
 <body>
-    
+ 
+<?php 
+
+session_start();
+if (!isset($_SESSION['ID'])) {
+    header("Location: login");
+    exit();
+}
+
+?>
+
 <nav>
     <a href="php/logout.php">Kijelentkezes</a>
     <a href="php/creategame.php">Create game</a>
