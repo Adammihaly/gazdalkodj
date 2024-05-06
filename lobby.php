@@ -22,6 +22,11 @@ if (!isset($_SESSION['ID'])) {
     <a href="php/logout.php">Kijelentkezes</a>
     <a href="php/creategame.php">Create game</a>
 </nav>
+<br><br><br>
+<form method="POST" action="php/join.php">
+    <input type="number" name="j_code" required>
+    <button name="sub">Join</button>
+</form>
 
 </body>
 </html>
