@@ -54,5 +54,28 @@ else
     <h2>Lobby kod: <?php echo $roomID; ?></h2>
 </nav>
 
+<script>
+var activityTimeout = setTimeout(inactive, 5000); // 5 másodperc inaktivitás után fut le
+
+function resetActive(){
+    clearTimeout(activityTimeout);
+    activityTimeout = setTimeout(inactive, 5000);
+}
+
+// Ha a felhasználó bármilyen aktivitást végez (pl. kattint, görget, billentyűt nyom), akkor újraindítjuk az időzítőt
+window.onmousemove = resetActive; 
+window.onmousedown = resetActive; 
+window.onclick = resetActive;     
+window.onscroll = resetActive;    
+window.onkeypress = resetActive;  
+
+function inactive(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'php/userexit.php', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("roomID=<?php echo $roomID; ?>&profileID=<?php echo $_SESSION['ID']; ?>");
+}
+</script>
+
 </body>
 </html>
